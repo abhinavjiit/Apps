@@ -1,0 +1,59 @@
+
+
+
+       ****************************** Video App  *********************************
+
+  USED LIB ->
+       
+     1.Coroutines(for doing work asynchronously in sort background task)
+
+     2.Retrofit(for api calls)
+    
+     3.RoomDataBase(for saving data into database and doing work offline)
+ 
+     4.Dagger(Dependency injection)
+
+     5.ButterKnife(for view binding)
+
+     6.ExoPlayer(for playing video)
+ 
+     7.Picasso(for image loading)
+     
+
+     
+ ARCHITECTURE- MVVM
+
+
+
+
+   *********  Functionality *****
+
+     1. In the first fragment , i fetch all videos by making api call.
+   
+     2.in second tab fragment ,it is for showing selected videos means which you have
+     selected previously for detail.      
+
+     3.In first tab ,when you click any item ,I send that video to database.
+   
+     4.you can see that video but have to swipe refresh from top.
+    
+     5.in detail page we have exoPlayer .where you can see the video trailer.
+
+
+
+    
+    ResourceHelper class is for helping to fetch the erroe while making api calls.
+
+    And all the Dependency injection is done by Dagger.
+    AppComponent interface is responsible for injecting Dependencies into class 
+
+
+
+
+
+
+
+  
+     
+ 
+  
