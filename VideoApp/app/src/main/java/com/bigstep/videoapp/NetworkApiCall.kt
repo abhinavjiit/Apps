@@ -8,4 +8,9 @@ interface NetworkApiCall {
     @GET("search?term=Michael+jackson&media=musicVideo")
     suspend fun getAllVideosList(): VideoListingResponse
 
+
+
+
+
+
 }

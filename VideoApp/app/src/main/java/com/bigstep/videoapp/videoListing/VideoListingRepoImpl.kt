@@ -1,5 +1,6 @@
 package com.bigstep.videoapp.videoListing
 
+import android.util.Log
 import com.bigstep.videoapp.NetworkApiCall
 import com.bigstep.videoapp.Resource
 import com.bigstep.videoapp.ResponseHandler

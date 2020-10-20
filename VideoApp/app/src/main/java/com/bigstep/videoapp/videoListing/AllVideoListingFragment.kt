@@ -2,6 +2,7 @@ package com.bigstep.videoapp.videoListing
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import butterknife.ButterKnife
 import com.bigstep.videoapp.Injector
 import com.bigstep.videoapp.R
 import com.bigstep.videoapp.Resource
+import com.bigstep.videoapp.constructorInjection.Service
 import com.bigstep.videoapp.model.Result
 import com.bigstep.videoapp.videoDetail.VideoDetailActivity
 import javax.inject.Inject
@@ -36,6 +38,9 @@ class AllVideoListingFragment : Fragment(), VideosListViewHolder.RecyclerViewCli
         VideoListingAdapter(this)
     }
 
+    @Inject
+    lateinit var service: Service
+
     private var videosList: ArrayList<Result>? = null
 
     override fun onCreateView(
@@ -50,7 +55,8 @@ class AllVideoListingFragment : Fragment(), VideosListViewHolder.RecyclerViewCli
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        (activity?.applicationContext as Injector).createVideosComponent().inject(this)
+        (activity?.applicationContext as Injector).createVideosComponent().getActivityComponent()
+            .create().inject(this)
         videosListingViewModel =
             ViewModelProvider(this, viewModelFact).get(VideosListingViewModel::class.java)
         initRecyclerView()
@@ -64,22 +70,28 @@ class AllVideoListingFragment : Fragment(), VideosListViewHolder.RecyclerViewCli
         recyclerView.adapter = adapter
         adapter.setVideosList(videosList)
         adapter.notifyDataSetChanged()
+        Log.d("SERVICE", service.getService())
+        Log.d("Car", service.getCar())
+        Log.d("Bike", service.getBike())
+
         showVideos()
     }
 
     private fun showVideos() {
         videosListingViewModel.getVideosList().observe(requireActivity(), Observer {
-            when (it.status) {
+            when (it?.status) {
                 Resource.Status.SUCCESS -> {
+                    videosListingViewModel.netWorkStates.value = Resource.Status.SUCCESS
                     videosList = it.data?.results?.toMutableList() as ArrayList<Result>
                     adapter.setVideosList(it.data.results)
                     adapter.notifyDataSetChanged()
                 }
                 Resource.Status.ERROR -> {
+                    videosListingViewModel.netWorkStates.value = Resource.Status.ERROR
                     Toast.makeText(requireActivity(), it.message, Toast.LENGTH_SHORT).show()
                 }
                 Resource.Status.LOADING -> {
-                    //   showLoading()
+                    videosListingViewModel.netWorkStates.value = Resource.Status.LOADING
                 }
             }
         })

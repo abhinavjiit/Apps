@@ -1,0 +1,42 @@
+{
+  "gm1": [
+    {
+      "manager1": [
+        {
+          "lead1": [
+            {
+              "emp1": {
+                "name": "c",
+                "type": "emp"
+              }
+            },
+            {
+              "emp2": {
+                "name": "d",
+                "type": "emp"
+              }
+            }
+          ],
+          "name": "b",
+          "type": "lead"
+        }
+      ],
+      "name": "a",
+      "type": "manager"
+    },
+    {
+      "lead2": [
+        {
+          "emp1": {
+            "name": "e",
+            "type": "emp"
+          }
+        }
+      ],
+      "name": "f",
+      "type": "lead"
+    }
+  ],
+  "name": "g",
+  "type": "gm"
+}

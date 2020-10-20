@@ -22,6 +22,7 @@ class BaseApplication : Application(), Injector {
         return appComponent
     }
 
+
     private fun setInstance(context: Context) {
         this.context = context
     }

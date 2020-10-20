@@ -9,6 +9,7 @@ import dagger.Provides
 
 @Module
 class RemoteOrDataBaseDataModule {
+
     @Provides
     fun providesRemoteOrDataBaseDataInstance(
         apiCall: NetworkApiCall,

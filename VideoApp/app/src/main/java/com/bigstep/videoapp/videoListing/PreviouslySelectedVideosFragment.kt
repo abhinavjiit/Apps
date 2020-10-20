@@ -51,7 +51,7 @@ class PreviouslySelectedVideosFragment : Fragment(),
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        (activity?.applicationContext as Injector).createVideosComponent().inject(this)
+        (activity?.applicationContext as Injector).createVideosComponent().getActivityComponent().create().inject(this)
         videosListingViewModel =
             ViewModelProvider(this, viewModelFact).get(VideosListingViewModel::class.java)
         initRecyclerView()
